@@ -1,0 +1,32 @@
+---
+
+interface Props {
+    
+}
+---
+<form>
+  <label for="fullUrl">Enter URL:</label>
+  <input type="text" name="fullUrl" id="fullUrl" required>
+  <button type="submit">Encode</button>
+</form>
+<form>
+  <label for="shortUrl">Enter URL:</label>
+  <input type="text" name="shortUrl" id="shortUrl" required>
+  <button type="submit">Decode</button>
+</form>
+<div class="result" id="result"></div>
+
+<script>
+import {handleShortcutForm} from "./utils/HandleFormSubmit.astro"
+const forms = document.querySelectorAll("form");
+if(forms){
+forms.forEach((element:any)=> {
+  handleShortcutForm(element);
+});
+}
+</script>
+<style>
+  .result{
+    font-size:0.7vw;
+  }
+</style>

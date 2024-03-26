@@ -1,0 +1,27 @@
+---
+import { encodeShortUrl, decodeFullUrl } from "./EncodeUrlService.astro";
+import { printResult } from "./PrintValueService.astro";
+
+export const handleShortcutForm= (form?: HTMLFormElement | null) => {
+    if(!form) {
+        return;
+    }
+
+  form.addEventListener("submit", function (e:any)  {
+    e.preventDefault();
+    const formData = new FormData(form)
+    const fullUrl = formData.get('fullUrl');
+    if(fullUrl){
+      const decodedShortUrl = encodeShortUrl(fullUrl);
+      printResult(decodedShortUrl)
+      
+      return;
+    }
+    const shortUrl = formData.get('shortUrl');
+    if(shortUrl){
+      const decodedFullUrl = decodeFullUrl(shortUrl);
+      printResult(decodedFullUrl)
+    }
+  });
+};
+---
